@@ -1,0 +1,31 @@
+# Auto detect text files and perform LF normalization
+* text=auto
+
+# Git stuff
+.gitattributes text eol=lf
+.gitignore text eol=lf
+
+# Project specific
+*.jar binary
+*.zip binary
+
+# Eclipse specific
+.project text eol=lf
+**/*.prefs text eol=lf
+
+# Web content
+*.html text eol=lf
+*.css text eol=lf
+*.tag text eol=lf
+
+# Binary assets
+*.png binary
+*.gif binary
+*.pdf binary
+
+# Windows scripts
+*.cmd text eol=crlf
+
+# Miscellaneous
+*.properties text eol=lf
+*.md text eol=lf
