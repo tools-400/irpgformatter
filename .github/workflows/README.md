@@ -9,37 +9,40 @@ Veröffentlicht bei einem Release-Build die folgenden Dateien als Assets eines G
 
 ### Trigger
 
-Der Workflow läuft ausschließlich beim Push eines Tags im Release-Format:
+- **Push auf `main`**, der `docs/files/rdi8.0/` ändert, also der Commit „Release v…“ mit dem neuen Update-Site-ZIP. Die Version stammt aus dem Namen des ZIPs (`(v<VERSION> Update Site).zip`). Fehlt der Tag `v<VERSION>`, legt der Workflow ihn auf dem Commit an, der das ZIP zuletzt geändert hat, und erstellt das Release.
+- **Push eines Tags** im Release-Format `v<major>.<minor>.<patch>.r`, z. B. `v1.0.0.r`. Der Tag bestimmt die Version.
+- **Manueller Start** (*Run workflow*) wie ein Push auf `main`. Mit `dry_run` (Voreinstellung) zeigt er nur an, welcher Commit getaggt würde, und prüft die Assets.
 
-```
-v<major>.<minor>.<patch>.r       z. B. v1.0.0.r
-```
-
-Beta-Tags (`v1.0.0.b001`, `v1.0.0.b010` usw.) werden bewusst ignoriert.
+Beta-Versionen (`v1.0.0.b001` usw.) werden bewusst ignoriert. Ihre ZIPs liegen unter `docs/beta-version/` und lösen den Workflow nicht aus.
 
 ### Ablauf
 
-1. **Checkout** des Repos.
-2. **Version aus dem Tag-Namen ableiten** (`v1.0.0.r` → `1.0.0.r`). Der Tag ist die einzige Quelle der Versionsnummer.
-3. **Assets validieren**:
+1. **Checkout** des Repos mit allen Commits und Tags.
+2. **Release bestimmen**: aus dem gepushten Tag oder aus dem Namen des ZIPs in `docs/files/rdi8.0/`. Existiert der Tag auf GitHub schon, endet der Workflow ohne Änderung.
+3. **Tag anlegen** (nur beim Push auf `main` und beim manuellen Start ohne `dry_run`): annotiert, Nachricht `Tag v<VERSION>.`, Tagger `github-actions[bot]`. Tag und Release entstehen im selben Lauf, weil ein mit `GITHUB_TOKEN` angelegter Tag keinen weiteren Workflow auslöst.
+4. **Assets validieren** auf dem Stand des Tags:
    - Die PDF muss unter `docs/files/iRpgFormatter for RDi.pdf` existieren.
    - Im Verzeichnis `docs/files/rdi8.0/` muss genau ein ZIP existieren, dessen Name auf `(v<VERSION> Update Site).zip` endet. Bei 0 oder mehreren Treffern bricht der Workflow mit klarer Fehlermeldung ab.
-4. **GitHub Release erstellen** mit Titel `iRpgFormatter v<VERSION>` und beiden Dateien als Assets (`softprops/action-gh-release`).
+5. **GitHub Release erstellen** mit Titel `iRpgFormatter v<VERSION>` und beiden Dateien als Assets (`softprops/action-gh-release`).
 
 ### Veröffentlichen
 
+Den Commit „Release v<VERSION>.“ auf `main` pushen. Tag und Release entstehen automatisch. Lokal holt `git fetch --tags` den Tag.
+
+Ein Tag lässt sich weiterhin von Hand pushen, z. B. um ein Release neu zu erstellen:
+
 ```bash
-git tag v1.0.0.r
+git tag -a v1.0.0.r -m "Tag v1.0.0.r."
 git push origin v1.0.0.r
 ```
 
 ### Vorbedingung
 
-Vor dem Tag-Push muss das Update-Site-ZIP unter dem Release-Namen im Repo liegen. Heißt das ZIP noch `... (v1.0.0.b010 Update Site).zip`, muss es vorher in `... (v1.0.0.r Update Site).zip` umbenannt und committet werden, sonst schlägt der Workflow fehl.
+Das Update-Site-ZIP muss unter dem Release-Namen in `docs/files/rdi8.0/` liegen. Heißt das ZIP noch `... (v1.0.0.b010 Update Site).zip`, muss es vorher in `... (v1.0.0.r Update Site).zip` umbenannt und committet werden.
 
 ### Berechtigungen
 
-Der Job läuft mit `contents: write`, was zum Anlegen des Release nötig ist. Es werden keine zusätzlichen Secrets benötigt — `GITHUB_TOKEN` reicht.
+Der Job läuft mit `contents: write`, was zum Anlegen von Tag und Release nötig ist. Es werden keine zusätzlichen Secrets benötigt — `GITHUB_TOKEN` reicht.
 
 ### Beta-Builds
 
