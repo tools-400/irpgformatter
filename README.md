@@ -1,9 +1,9 @@
-# iRpgFormatter
+# iRPGFormatter
 
-Documentation and update site of the iRpgFormatter plug-in.
+Documentation and update site of the iRPGFormatter plug-in.
 
-Place issues on the [iRpgFormatter Plug-in](https://github.com/tools-400/irpgformatter-plugin) website.
+Place issues on the [iRPGFormatter Plug-in](https://github.com/tools-400/irpgformatter-plugin) website.
 
 ## See Also
 
-* [iRpgFormatter Plug-in](https://github.com/tools-400/irpgformatter-plugin)
+* [iRPGFormatter Plug-in](https://github.com/tools-400/irpgformatter-plugin)
