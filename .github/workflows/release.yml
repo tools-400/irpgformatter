@@ -111,11 +111,13 @@ jobs:
           VERSION="${TAG#v}"
           echo "Version: ${VERSION}"
 
-          PDF="docs/files/iRpgFormatter for RDi.pdf"
-          if [ ! -f "${PDF}" ]; then
-            echo "PDF nicht gefunden: ${PDF}" >&2
+          # Der Name der PDF kann die RDi-Version enthalten.
+          mapfile -t PDFS < <(compgen -G "docs/files/iRpgFormatter for RDi*.pdf" || true)
+          if [ ${#PDFS[@]} -ne 1 ]; then
+            echo "PDF nicht eindeutig (${#PDFS[@]} Treffer)." >&2
             exit 1
           fi
+          PDF="${PDFS[0]}"
 
           shopt -s nullglob
           ZIPS=( "docs/files/rdi8.0/iRpgFormatter for RDi"*"(v${VERSION} Update Site).zip" )
