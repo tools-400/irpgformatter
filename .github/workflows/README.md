@@ -4,8 +4,8 @@
 
 Veröffentlicht bei einem Release-Build die folgenden Dateien als Assets eines GitHub Release:
 
-- `docs/files/iRpgFormatter for RDi.pdf`
-- `docs/files/rdi8.0/iRpgFormatter for RDi <RDi-Version>+ (v<VERSION> Update Site).zip`
+- `docs/files/iRPGFormatter for RDi.pdf`
+- `docs/files/rdi8.0/iRPGFormatter for RDi <RDi-Version>+ (v<VERSION> Update Site).zip`
 
 ### Trigger
 
@@ -21,9 +21,9 @@ Beta-Versionen (`v1.0.0.b001` usw.) werden bewusst ignoriert. Ihre ZIPs liegen u
 2. **Release bestimmen**: aus dem gepushten Tag oder aus dem Namen des ZIPs in `docs/files/rdi8.0/`. Existiert der Tag auf GitHub schon, endet der Workflow ohne Änderung.
 3. **Tag anlegen** (nur beim Push auf `main` und beim manuellen Start ohne `dry_run`): annotiert, Nachricht `Tag v<VERSION>.`, Tagger `github-actions[bot]`. Tag und Release entstehen im selben Lauf, weil ein mit `GITHUB_TOKEN` angelegter Tag keinen weiteren Workflow auslöst.
 4. **Assets validieren** auf dem Stand des Tags:
-   - Die PDF muss unter `docs/files/iRpgFormatter for RDi.pdf` existieren.
+   - Genau eine PDF `docs/files/iRPGFormatter for RDi*.pdf` muss existieren, die Groß-/Kleinschreibung der Dateinamen zählt nicht.
    - Im Verzeichnis `docs/files/rdi8.0/` muss genau ein ZIP existieren, dessen Name auf `(v<VERSION> Update Site).zip` endet. Bei 0 oder mehreren Treffern bricht der Workflow mit klarer Fehlermeldung ab.
-5. **GitHub Release erstellen** mit Titel `iRpgFormatter v<VERSION>` und beiden Dateien als Assets (`softprops/action-gh-release`).
+5. **GitHub Release erstellen** mit Titel `iRPGFormatter v<VERSION>` und beiden Dateien als Assets (`softprops/action-gh-release`).
 
 ### Veröffentlichen
 

@@ -22,8 +22,8 @@ Beispiel `release.xml` (Skizze):
 
     <property name="version" value="1.0.0.r"/>
     <property name="tag"     value="v${version}"/>
-    <property name="pdf"     value="build/dist/iRpgFormatter for RDi.pdf"/>
-    <property name="zip"     value="build/dist/iRpgFormatter for RDi 9.6.0.13+ (v${version} Update Site).zip"/>
+    <property name="pdf"     value="build/dist/iRPGFormatter for RDi.pdf"/>
+    <property name="zip"     value="build/dist/iRPGFormatter for RDi 9.6.0.13+ (v${version} Update Site).zip"/>
 
     <target name="check">
         <available file="${pdf}" property="pdf.ok"/>
@@ -50,7 +50,7 @@ Beispiel `release.xml` (Skizze):
             <arg value="create"/>
             <arg value="${tag}"/>
             <arg value="--title"/>
-            <arg value="iRpgFormatter v${version}"/>
+            <arg value="iRPGFormatter v${version}"/>
             <arg value="--notes"/>
             <arg value="Release ${version}"/>
             <arg file="${pdf}"/>
@@ -88,6 +88,7 @@ Einmalig:
    git filter-repo \
      --path docs/files/rdi8.0/ \
      --path "docs/files/iRpgFormatter for RDi.pdf" \
+     --path "docs/files/iRPGFormatter for RDi.pdf" \
      --path docs/beta-version/ \
      --invert-paths
    ```
@@ -112,7 +113,7 @@ Einmalig:
 - Bestehende Release-Downloads unter `releases/download/v.../...` funktionieren auch nach dem History-Rewrite weiter — Release-Assets liegen außerhalb der Git-Historie.
 - GitHub Pages funktioniert weiter, solange `docs/index.html` und die referenzierten Assets im finalen Tree erhalten bleiben. PDF-Links in der Pages-Site müssen auf die Release-URLs umgestellt werden:
   ```
-  https://github.com/tools-400/irpgformatter/releases/latest/download/iRpgFormatter%20for%20RDi.pdf
+  https://github.com/tools-400/irpgformatter/releases/latest/download/iRPGFormatter%20for%20RDi.pdf
   ```
 
 ## Empfehlung
