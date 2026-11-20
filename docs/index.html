@@ -17,7 +17,7 @@
         <p>Hi, this is the home of the iRPGFormatter plug-in for IBM Rational Developer for i.</p>
         </td>
         <td valign="bottom" align="right" nowrap>
-        <b>Version: 2.1.0.r</b>
+        <b>Version: 2.2.0.r</b>
         </td>
         </tr>
         </table>
@@ -47,14 +47,17 @@
         <tr><td valign="top">
         <div class="section">
         <ul>
-            <li>Formats free-form RPG IV source code.</li>
-            <li>Configurable keyword casing (upper case, lower case, capitalized).</li>
-            <li>Configurable indentation of nested code blocks.</li>
-            <li>Formats procedure and keyword parameters.</li>
-            <li>Format source members directly from the <i>Remote Systems</i> view.</li>
-            <li>Format source members directly in an <i>Lpex editor</i> view.</li>
-            <li>Optionally executes the IBM formatter.</li>
-            <li>Optionally format source on save.</li>
+            <li>Indents the calculations by the nesting of their blocks and the comment lines like the following statement.</li>
+            <li>Formats embedded SQL statements according to the RDi preferences page <i>Free-form SQL Formatting</i>.</li>
+            <li>Formats the branches of conditional compiling (<code>/IF</code>, <code>/ELSE</code>, <code>/ENDIF</code>) like the compiler.</li>
+            <li>Various formatting options, e.g. the casing style, adding or removing the keyword <code>const()</code>, replacing the name of <code>dcl-pi</code> with <code>*N</code> and removing the name of <code>end-proc</code>.</li>
+            <li>Optionally formats the calculations with the IBM formatter.</li>
+            <li>Formats the whole source or the selected lines in the LPEX editor. A selection is expanded to the whole block.</li>
+            <li>Formats many sources at once from the <i>Remote Systems</i> view or the <i>Project Explorer</i>.</li>
+            <li>Optionally formats a source on save.</li>
+            <li>Project specific settings, e.g. for the sources of a Git repository, that the team formats the same way.</li>
+            <li>Lists the problems in the view <i>iRPGFormatter Problems</i> and in the ruler of the editor.</li>
+            <li>Lets AI agents like Claude Code format sources with the settings of RDi: the optional feature <i>iRPGFormatter iAgentBridge</i> adds the tool <code>format_rpg</code> to the MCP server of the plug-in <a href="https://tools-400.github.io/iagentbridge/">iAgentBridge</a>.</li>
         </ul>
         </div>
         </td>
@@ -92,6 +95,8 @@
         <tr><td><img class="noborder" src="./assets/zip_file.png"></td><td><a href="https://tools-400.github.io/irpgformatter/files/">GitHub Files</a></td></tr>
         </table>
         <p/>
+        The optional feature <i>iRPGFormatter iAgentBridge</i> requires the plug-in <a href="https://tools-400.github.io/iagentbridge/">iAgentBridge</a>. Install iAgentBridge first. iRPGFormatter itself does not need it.
+        <p/>
         </div>
 
         <h2 class="release">Help</h2>
@@ -115,7 +120,7 @@
         <br>
         <hr>
         <table border="0" class="copyright">
-        <tr><td class="copyright" align="left" width="50%">Version: 2.1.0.r - Copyright: 2026, iRPGFormatter Project Team</td><td class="copyright" align="right" width="50%">Updated: 17.11.2026 - 19:07:58</td></tr>
+        <tr><td class="copyright" align="left" width="50%">Version: 2.2.0.r - Copyright: 2026, iRPGFormatter Project Team</td><td class="copyright" align="right" width="50%">Updated: 20.11.2026 - 19:57:26</td></tr>
         </table>
         <br>
     </body>
